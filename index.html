@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Originova — Where publications become products.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1B2A4A;
+    --teal: #3ECFB4;
+    --teal-light: #d4f7f1;
+    --teal-dark: #2ab09a;
+    --white: #ffffff;
+    --off-white: #f7f9fc;
+    --gray-100: #f0f4f8;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-800: #1e293b;
+    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--gray-800);
+    background: var(--white);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(27, 42, 74, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(62, 207, 180, 0.15);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span { color: var(--teal); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: var(--teal);
+    color: var(--navy) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--teal-dark) !important; color: var(--white) !important; }
+
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, #243555 60%, #1a3a4a 100%);
+    display: flex;
+    align-items: center;
+    padding: 100px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(62,207,180,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(62,207,180,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(62, 207, 180, 0.15);
+    border: 1px solid rgba(62, 207, 180, 0.4);
+    color: var(--teal);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .hero-title span { color: var(--teal); }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    color: var(--white);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(62,207,180,0.3);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* Hero visual card */
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-stat-card .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-stat-card .stat-value {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--teal);
+    line-height: 1.2;
+  }
+
+  .hero-stat-card .stat-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.2rem;
+  }
+
+  .flow-visual {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(62,207,180,0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+  }
+
+  .flow-step:not(:last-child) {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .flow-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(62,207,180,0.15);
+    border: 1px solid rgba(62,207,180,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .flow-text {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .flow-text strong {
+    color: var(--white);
+    display: block;
+    font-weight: 600;
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 90px 5%; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--gray-600);
+    max-width: 620px;
+    line-height: 1.8;
+  }
+
+  /* ─── PROBLEM ─── */
+  #problem {
+    background: var(--gray-100);
+    padding: 80px 5%;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .problem-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.75rem;
+    border-left: 4px solid var(--teal);
+  }
+
+  .problem-card .p-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .problem-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .problem-card p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  /* ─── METHODOLOGY ─── */
+  #methodology { background: var(--white); }
+
+  .methodology-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .step-card {
+    background: var(--off-white);
+    border-radius: 14px;
+    padding: 2rem;
+    border: 1px solid var(--gray-200);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .step-card:hover::before { transform: scaleX(1); }
+
+  .step-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(27, 42, 74, 0.08);
+    border-color: var(--teal);
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .step-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .step-card p {
+    font-size: 0.88rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  /* ─── WHO WE SERVE ─── */
+  #audience {
+    background: var(--navy);
+    padding: 90px 5%;
+  }
+
+  #audience .section-title { color: var(--white); }
+  #audience .section-label { color: var(--teal); }
+  #audience .section-intro { color: rgba(255,255,255,0.65); }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .audience-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: all 0.25s;
+  }
+
+  .audience-card:hover {
+    background: rgba(62,207,180,0.08);
+    border-color: rgba(62,207,180,0.4);
+  }
+
+  .audience-card .a-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .audience-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .audience-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+
+  /* ─── SCOPE OF WORK ─── */
+  #scope {
+    background: var(--off-white);
+  }
+
+  .scope-wrapper {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .scope-header {
+    background: var(--navy);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .scope-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .scope-header p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+  }
+
+  .scope-badge {
+    background: rgba(62,207,180,0.15);
+    border: 1px solid rgba(62,207,180,0.4);
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .scope-body {
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .scope-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .scope-item:last-child, .scope-item:nth-last-child(2):nth-child(odd) {
+    border-bottom: none;
+  }
+
+  .scope-check {
+    width: 20px;
+    height: 20px;
+    background: var(--teal-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 0.65rem;
+    color: var(--teal-dark);
+    font-weight: 700;
+  }
+
+  .scope-text strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .scope-text span {
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .scope-footer {
+    background: var(--gray-100);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .scope-footer p {
+    font-size: 0.88rem;
+    color: var(--gray-600);
+    flex: 1;
+  }
+
+  .scope-footer p strong { color: var(--navy); }
+
+  /* ─── FOUNDER NOTE ─── */
+  #founder {
+    background: var(--white);
+  }
+
+  .founder-card {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+    border-radius: 16px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+
+  .founder-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--navy);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .founder-content blockquote {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    border: none;
+    padding: 0;
+  }
+
+  .founder-content blockquote::before {
+    content: '"';
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--teal);
+    line-height: 0;
+    vertical-align: -0.6rem;
+    margin-right: 0.15rem;
+  }
+
+  .founder-sig {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .founder-name {
+    font-weight: 700;
+    color: var(--white);
+    font-size: 0.95rem;
+  }
+
+  .founder-role {
+    font-size: 0.82rem;
+    color: var(--teal);
+  }
+
+  .early-access-badge {
+    background: rgba(62,207,180,0.15);
+    border: 1px solid rgba(62,207,180,0.35);
+    border-radius: 8px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
+    color: var(--teal);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+
+  /* ─── FAQ ─── */
+  #faq { background: var(--off-white); }
+
+  .faq-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 800px;
+  }
+
+  .faq-item {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+  }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: color 0.2s;
+  }
+
+  .faq-q:hover { color: var(--teal-dark); }
+
+  .faq-arrow {
+    font-size: 0.75rem;
+    color: var(--teal);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s;
+    font-size: 0.92rem;
+    color: var(--gray-600);
+    line-height: 1.8;
+    padding: 0 1.5rem;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 500px;
+    padding: 0 1.5rem 1.25rem;
+  }
+
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+    padding: 100px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cta::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(62,207,180,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  #cta .section-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  #cta .section-title { color: var(--white); margin-bottom: 1rem; }
+  #cta .section-label { color: var(--teal); }
+
+  #cta p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .cta-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .cta-form input[type="email"] {
+    flex: 1;
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .cta-form input[type="email"]::placeholder { color: rgba(255,255,255,0.4); }
+  .cta-form input[type="email"]:focus { border-color: var(--teal); }
+
+  .cta-form button {
+    background: var(--teal);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .cta-form button:hover {
+    background: var(--teal-dark);
+    color: var(--white);
+  }
+
+  .cta-sub {
+    font-size: 0.82rem !important;
+    color: rgba(255,255,255,0.45) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .cta-alt {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .cta-alt p {
+    font-size: 0.9rem !important;
+    color: rgba(255,255,255,0.55) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .cta-alt a {
+    display: inline-block;
+    color: var(--teal);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(62,207,180,0.4);
+    padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+
+  .cta-alt a:hover { border-color: var(--teal); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #111c30;
+    padding: 2.5rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-left {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 600;
+  }
+
+  .footer-left span { color: var(--teal); }
+
+  .footer-center {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+  }
+
+  .footer-right {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-right a {
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .footer-right a:hover { text-decoration: underline; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-visual { display: none; }
+    .methodology-header { grid-template-columns: 1fr; gap: 1rem; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .scope-body { grid-template-columns: 1fr; }
+    .founder-card { grid-template-columns: 1fr; }
+    .founder-avatar { display: none; }
+    .founder-sig { flex-wrap: wrap; }
+    .early-access-badge { margin-left: 0; }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 68px; left: 0; right: 0;
+      background: var(--navy);
+      padding: 1.5rem 4%;
+      gap: 1.25rem;
+      border-bottom: 1px solid rgba(62,207,180,0.15);
+      z-index: 99;
+    }
+    section { padding: 70px 4%; }
+    #hero { padding: 90px 4% 70px; }
+    .cta-form { flex-direction: column; }
+    .scope-header { padding: 1.5rem; }
+    .scope-body { padding: 1rem 1.5rem; }
+    .scope-footer { padding: 1rem 1.5rem; }
+    .founder-card { padding: 1.75rem; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-center { order: 3; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#">Origi<span>nova</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#audience">Who We Serve</a></li>
+    <li><a href="#scope">Scope</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#cta" class="nav-cta">Book a Discovery Call</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">Research Commercialization</div>
+      <h1 class="hero-title">Where publications<br>become <span>products.</span></h1>
+      <p class="hero-tagline">Unlocking the commercial value hidden inside your institution's research portfolio.</p>
+      <p class="hero-desc">Originova is a research commercialization partner for universities and research institutions. We scan your publication and patent portfolio, build rapid prototypes, validate real market demand, and deliver investable, market-ready opportunities — so your TTO can do more with the IP it already holds.</p>
+      <div class="hero-cta-group">
+        <a href="#cta" class="btn-primary">Book a Discovery Call</a>
+        <a href="#methodology" class="btn-ghost">See Our Method →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-stat-card">
+        <div class="stat-label">Most university research portfolios contain</div>
+        <div class="stat-value">Untapped commercial potential</div>
+        <div class="stat-sub">that current TTO capacity can't fully pursue. We change that.</div>
+      </div>
+      <div class="flow-visual">
+        <div class="flow-step">
+          <div class="flow-dot">🔬</div>
+          <div class="flow-text">
+            <strong>Scan &amp; Score</strong>
+            AI-powered portfolio analysis
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-dot">⚡</div>
+          <div class="flow-text">
+            <strong>Prototype</strong>
+            Tangible demos from science
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-dot">📊</div>
+          <div class="flow-text">
+            <strong>Validate</strong>
+            Real market experiments
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-dot">🚀</div>
+          <div class="flow-text">
+            <strong>Go to Market</strong>
+            Spinout, license, or partnership
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROBLEM ─── -->
+<section id="problem">
+  <div class="section-inner">
+    <div class="section-label">The Gap We Close</div>
+    <h2 class="section-title">World-class research.<br>Underutilized commercial potential.</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="p-icon">📚</div>
+        <h3>Vast Portfolios, Thin Resources</h3>
+        <p>Most technology transfer offices manage hundreds of active disclosures with small teams. Many high-potential research outputs never receive the commercial attention they deserve.</p>
+      </div>
+      <div class="problem-card">
+        <div class="p-icon">🔍</div>
+        <h3>Commercial Potential Goes Unspotted</h3>
+        <p>Identifying which publications have genuine market applications requires business and product thinking that sits outside most academic institutions' core capabilities.</p>
+      </div>
+      <div class="problem-card">
+        <div class="p-icon">🏗️</div>
+        <h3>The "Valley of Death" Is Real</h3>
+        <p>Even when a promising opportunity is identified, the gap between academic proof-of-concept and investor-ready product is wide — and rarely bridged without dedicated commercial expertise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── METHODOLOGY ─── -->
+<section id="methodology">
+  <div class="section-inner">
+    <div class="methodology-header">
+      <div>
+        <div class="section-label">Our Methodology</div>
+        <h2 class="section-title">Six capabilities.<br>One cohesive process.</h2>
+      </div>
+      <div>
+        <p class="section-intro">We run a structured, repeatable commercialization process designed for research institutions — from the first portfolio scan to a funded, validated opportunity.</p>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-icon">🔬</span>
+        <div class="step-num">Step 01</div>
+        <h3>Research Intelligence Scanning</h3>
+        <p>AI-powered analysis of your university's publication and patent portfolio to identify research with the highest commercial potential, scoring for market size, feasibility, and timing.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-icon">⚡</span>
+        <div class="step-num">Step 02</div>
+        <h3>Rapid Prototyping</h3>
+        <p>Our product and engineering team builds functional prototypes from selected research — translating complex science into tangible demos that investors and customers can experience.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-icon">📊</span>
+        <div class="step-num">Step 03</div>
+        <h3>Demand Validation</h3>
+        <p>We run structured market experiments — landing pages, buyer interviews, LOI campaigns — to prove (or disprove) real-world demand before any major investment is made.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-icon">🗺️</span>
+        <div class="step-num">Step 04</div>
+        <h3>Commercialization Roadmap</h3>
+        <p>A clear, actionable go-to-market plan for each validated opportunity: recommended business model, target customers, IP strategy, and funding pathway — spinout, license, or partnership.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-icon">🤝</span>
+        <div class="step-num">Step 05</div>
+        <h3>Investor &amp; Industry Matchmaking</h3>
+        <p>We connect validated research-products with our network of deep-tech investors, corporate partners, and grant programs to secure the next stage of funding and development.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-icon">🏛️</span>
+        <div class="step-num">Step 06</div>
+        <h3>TTO Capacity Extension</h3>
+        <p>Designed to augment — not replace — your technology transfer office. We integrate with your existing processes, IP policies, and researcher relationships as a seamless extension of your team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHO WE SERVE ─── -->
+<section id="audience">
+  <div class="section-inner">
+    <div class="section-label">Who We Work With</div>
+    <h2 class="section-title">Built for institutions<br>that take IP seriously.</h2>
+    <p class="section-intro">Originova partners with organizations that have strong research output and the ambition to convert more of it into real-world impact.</p>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="a-icon">🎓</div>
+        <h3>Technology Transfer Offices</h3>
+        <p>You have a large, growing portfolio and a team that's stretched. We extend your capacity — handling the commercial discovery, validation, and matchmaking so your team can focus on what it does best.</p>
+      </div>
+      <div class="audience-card">
+        <div class="a-icon">🔭</div>
+        <h3>VP Research &amp; Innovation Offices</h3>
+        <p>You want to demonstrate the broader economic impact of your institution's research investment. Originova turns that research into a measurable pipeline of commercial opportunities.</p>
+      </div>
+      <div class="audience-card">
+        <div class="a-icon">🏛️</div>
+        <h3>Government Innovation Agencies</h3>
+        <p>Agencies supporting deep-tech commercialization — Business Finland, the EIC, and similar — can deploy Originova as a structured delivery partner for portfolio companies and grant recipients.</p>
+      </div>
+      <div class="audience-card">
+        <div class="a-icon">🧬</div>
+        <h3>Research-Intensive Institutions</h3>
+        <p>Hospitals, national labs, and research institutes with valuable IP but no dedicated commercialization infrastructure. We bring the entire process in-house, end to end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SCOPE OF WORK ─── -->
+<section id="scope">
+  <div class="section-inner">
+    <div class="section-label">What You Get</div>
+    <h2 class="section-title">A concrete scope,<br>not a vague retainer.</h2>
+    <p class="section-intro">Every Originova engagement is structured around a clear set of deliverables. Here is what a typical commercialization sprint includes.</p>
+    <div class="scope-wrapper">
+      <div class="scope-header">
+        <div>
+          <h3>Commercialization Sprint</h3>
+          <p>A focused, time-boxed engagement covering the full pipeline from scan to validated opportunity</p>
+        </div>
+        <span class="scope-badge">Core Deliverables</span>
+      </div>
+      <div class="scope-body">
+        <div class="scope-item">
+          <div class="scope-check">✓</div>
+          <div class="scope-text">
+            <strong>Portfolio Intelligence Report</strong>
+            <span>AI-scored analysis of your publications and patents with commercial potential rankings</span>
+          </div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-check">✓</div>
+          <div class="scope-text">
+            <strong>Shortlisted Opportunities</strong>
+            <span>Top research candidates selected for full commercialization sprint based on scoring</span>
+          </div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-check">✓</div>
+          <div class="scope-text">
+            <strong>Functional Prototypes</strong>
+            <span>Working demos built from selected research — shareable with investors and prospects</span>
+          </div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-check">✓</div>
+          <div class="scope-text">
+            <strong>Demand Validation Package</strong>
+            <span>Market experiment results: buyer interviews, LOI data, and demand evidence</span>
+          </div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-check">✓</div>
+          <div class="scope-text">
+            <strong>Commercialization Roadmaps</strong>
+            <span>Per-opportunity: business model recommendation, IP strategy, and funding pathway</span>
+          </div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-check">✓</div>
+          <div class="scope-text">
+            <strong>Investor &amp; Partner Introductions</strong>
+            <span>Warm introductions to relevant deep-tech investors, corporate buyers, and grant programs</span>
+          </div>
+        </div>
+      </div>
+      <div class="scope-footer">
+        <p><strong>Pricing is scoped per engagement</strong> based on portfolio size, number of opportunities in sprint, and institutional context. <strong>Book a discovery call</strong> for a transparent, no-obligation scoping conversation.</p>
+        <a href="#cta" class="btn-primary" style="font-size:0.9rem; padding:0.7rem 1.4rem;">Get a Scope →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOUNDER NOTE ─── -->
+<section id="founder">
+  <div class="section-inner">
+    <div class="section-label">Why We Built This</div>
+    <h2 class="section-title">A note from the founders.</h2>
+    <div class="founder-card">
+      <div class="founder-avatar">O</div>
+      <div class="founder-content">
+        <blockquote>
+          We spent years inside and alongside research institutions, watching genuinely world-changing science sit in PDFs — not because it lacked value, but because no one had the time, mandate, or skill set to bridge it to a market. Technology transfer offices are doing extraordinary work, but the commercial validation gap is structural, not a failure of effort. We built Originova to close that gap with a repeatable, honest process: scan, prototype, validate, roadmap, fund. No hype. No vague strategy decks. Just a team that does the actual work alongside yours — while you stay small and we're still getting started, you'll be talking directly with the people doing it.
+        </blockquote>
+        <div class="founder-sig">
+          <div>
+            <div class="founder-name">The Originova Team</div>
+            <div class="founder-role">Research Commercialization Partners</div>
+          </div>
+          <div class="early-access-badge">Early Engagements Open</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-label">Common Questions</div>
+    <h2 class="section-title">Answers to the questions<br>your TTO director will ask.</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          How is Originova different from a standard commercialization consultant?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Most consultants deliver reports. We deliver prototypes, validated demand data, and investor introductions. Our process is execution-first: we scan, build, test, and connect — and we stay accountable to outcomes, not deliverable hours. We're the team your TTO wishes it could hire full-time.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Will you disrupt our existing TTO processes or researcher relationships?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          No. We're designed to augment, not replace. We align with your IP policies, work within your existing disclosure and review processes, and communicate with researchers only through channels your TTO controls. Think of us as an extension of your team — not an external disruption.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Who owns the IP that comes out of the commercialization process?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Your institution retains full ownership of the underlying IP at all times. Originova works on the commercial discovery and validation layer — we don't acquire IP stakes by default. Any specific arrangements around licensing or spinout equity are agreed transparently in writing before any engagement begins.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What kinds of research do you focus on? Are there domains you don't cover?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          We work across deep-tech domains including life sciences, materials, engineering, AI/data, and clean tech. We use our scoring model to identify commercial potential regardless of field. We're honest about the domains where we have less market network depth — and we'll tell you upfront if a different partner would serve you better in a specific niche.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          How long does a typical engagement take?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          A full commercialization sprint — from portfolio scan to validated roadmap — typically runs 10 to 16 weeks depending on portfolio size and the number of opportunities in scope. We can also run a lighter Portfolio Intelligence scan as a standalone first step if your institution prefers to start smaller.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Can government agencies or grant programs fund an Originova engagement?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Yes. We're familiar with the funding structures of programs like Business Finland, the European Innovation Council, Innovate UK, and similar national innovation agencies. We can help scope engagements to align with eligible grant categories and provide supporting documentation where required. Reach out and we'll work through what applies to your situation.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          We're a small TTO with a limited budget. Is Originova accessible for us?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          We're early-stage and deliberately keeping our initial engagements lean. We'd rather do excellent work with a handful of the right institutions than over-promise and under-deliver. Book a discovery call and tell us your constraints — we'll be direct about whether and how we can make it work.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="cta">
+  <div class="section-inner">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">Let's look at your portfolio together.</h2>
+    <p>Book a no-obligation discovery call. We'll take a first look at your institution's research portfolio and give you an honest view of the commercial potential we see — before you commit to anything.</p>
+
+    <form class="cta-form">
+      <input type="email" placeholder="Your institutional email address" required>
+      <button type="submit">Request a Call</button>
+    </form>
+    <p class="cta-sub">We'll respond within one business day. No sales scripts — just a direct conversation.</p>
+
+    <div class="cta-alt">
+      <p>Prefer to send a quick message first?</p>
+      <a href="mailto:hello@originova.io">hello@originova.io</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-left">Origi<span>nova</span></div>
+  <div class="footer-center">© <span class="year"></span> Originova. All rights reserved.</div>
+  <div class="footer-right">Powered by <a href="https://madmantra.com" target="_blank" rel="noopener">MadMantra</a></div>
+</footer>
+
+<script>
+  // Year
+  document.querySelectorAll('.year').forEach(e => e.textContent = new Date().getFullYear());
+
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', function() {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close nav on link click
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    item.querySelector('.faq-q').addEventListener('click', function() {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Nav scroll style
+  window.addEventListener('scroll', function() {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 40) {
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  // Form submission
+  document.querySelectorAll('form').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = form.querySelector('input[type="email"]').value;
+      fetch('https://api.madmantra.app/api/landing/originova/signup', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email: email})
+      }).then(function() {
+        form.innerHTML = '<p style="padding:12px;color:#3ECFB4;font-weight:600;font-size:1rem;">Thanks! We\'ll be in touch within one business day.</p>';
+      }).catch(function() {
+        form.innerHTML = '<p style="padding:12px;color:#3ECFB4;font-weight:600;font-size:1rem;">Thanks! We\'ll be in touch within one business day.</p>';
+      });
+    });
+  });
+</script>
+</body>
+</html>
